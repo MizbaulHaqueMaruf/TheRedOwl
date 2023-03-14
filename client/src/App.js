@@ -3,7 +3,7 @@ import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 // import ProfilePage from "scenes/profilePage";
 import ProfilePage from "scenes/sadafProfile/Profile.js";
-//import BlogPage from "scenes/tamzidBlog/";
+import BlogPage from "scenes/tamzidBlog/account/home/home.jsx";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -36,10 +36,10 @@ function App() {
               element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
             />
 
-            {/* <Route
+            <Route
               path="/blog"
               element={isAuth ? <BlogPage /> : <Navigate to="/" />}
-            /> */}
+            />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
