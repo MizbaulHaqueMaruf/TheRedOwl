@@ -2,9 +2,11 @@ import Banner from "../../banner/Banner";
 import Categories from "./Categories";
 import { Grid } from "@mui/material";
 import BlogCard from "./../../blogcard/BlogCard";
+import Navbar from "scenes/navbar";
 const Home = () => {
   return (
     <>
+      <Navbar />
       <Banner />
       <Grid container>
         <Grid item lg={2} sm={2} xs={12}>
@@ -12,7 +14,7 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} sm={10} lg={10}>
           <h1>Posts</h1>
-          <BlogCard
+          {/* <BlogCard
             title="Coding Practices"
             img="https://149695847.v2.pressablecdn.com/wp-content/uploads/2019/06/chris-ried-512801-unsplash.jpg"
           />
@@ -30,7 +32,7 @@ const Home = () => {
           <BlogCard
             title="Blockchain"
             img="https://online.stanford.edu/sites/default/files/styles/embedded_large/public/2019-04/blockchain-and-cryptocurrency-regulating-innovation_SOE-XCS0001.jpg?itok=KEOh4kn9"
-          />
+          /> */}
         </Grid>
       </Grid>
     </>

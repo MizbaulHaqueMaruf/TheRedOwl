@@ -7,7 +7,7 @@ import {
   TableCell,
   styled,
 } from "@mui/material";
-import { categories } from "../../constants/data.js";
+import { categories } from "../../../constants/data.js";
 
 const StyledTable = styled(Table)`
   border: 1px solid rgba(224, 224, 224, 1);
