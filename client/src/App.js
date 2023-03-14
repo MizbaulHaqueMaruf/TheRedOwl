@@ -2,6 +2,8 @@ import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 // import ProfilePage from "scenes/profilePage";
+import ProfilePage from "scenes/sadafProfile/Profile.js";
+//import BlogPage from "scenes/tamzidBlog/";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -27,6 +29,16 @@ function App() {
             {/* <Route
               path="/profile/:userId"
               element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
+            /> */}
+
+            <Route
+              path="/profile"
+              element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
+            />
+
+            {/* <Route
+              path="/blog"
+              element={isAuth ? <BlogPage /> : <Navigate to="/" />}
             /> */}
           </Routes>
         </ThemeProvider>
