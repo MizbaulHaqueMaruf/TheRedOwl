@@ -1,0 +1,58 @@
+.Profile {
+  text-align: center;
+}
+
+.Profile-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Profile-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.Profile-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Profile-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.grid-container {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  margin-top: 0%;
+}
+
+.left-panel {
+  grid-column: 1 / span 1;
+  width: 100%;
+  height: 100%;
+}
+
+.right-panel {
+  grid-column: 2 / span 1;
+  width: 100%;
+  height: 100%;
+}
