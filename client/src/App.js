@@ -4,6 +4,7 @@ import LoginPage from "scenes/loginPage";
 // import ProfilePage from "scenes/profilePage";
 import ProfilePage from "scenes/sadafProfile/Profile.js";
 import BlogPage from "scenes/tamzidBlog/src/components/account/home/home.jsx";
+import IutProfilePage from "scenes/sadafSearchDirectory/components/Directory.js";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -39,6 +40,11 @@ function App() {
             <Route
               path="/blog"
               element={isAuth ? <BlogPage /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/iutProfile"
+              element={isAuth ? <IutProfilePage /> : <Navigate to="/" />}
             />
           </Routes>
         </ThemeProvider>

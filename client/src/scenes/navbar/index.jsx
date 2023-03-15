@@ -122,7 +122,7 @@ const Navbar = () => {
                 fontWeight="Medium"
                 fontSize="clamp(0.5rem, 1rem, 1.25rem)"
                 color="primary"
-                onClick={() => navigate("/home")}
+                onClick={() => navigate("/iutProfile")}
                 sx={{
                   "&:hover": {
                     color: primaryLight,
