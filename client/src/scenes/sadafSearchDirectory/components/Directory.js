@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import { Button, Card, Col, Container, Form, Pagination, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import Amar from '../20230306_144219.jpg';
-import woman1 from '../christina-wocintechchat-com-c-mgSuxqpzA-unsplash.jpg';
-import woman2 from '../immo-wegmann-rReG42Hkqo4-unsplash.jpg';
-import Man3 from '../linkedin-sales-solutions-NpyF7rjqmq4-unsplash.jpg';
-import Man1 from "../male-indian-programmer-working-desktop-computer-white-desk-office.jpg";
-import Man2 from '../man-analysing-binary-code-virtual-screen.jpg';
-import ManorWoman from '../vince-fleming-_THUISs23CI-unsplash.jpg';
+import Anan from '../anan.jpg';
+import Man1 from "../mukit.jpg";
+import woman2 from '../nibir.jpg';
+import Ridun from '../ridun.jpg';
+import ManorWoman from '../siam.jpg';
+import Man2 from '../tamzid.jpg';
+import woman1 from '../zerin.jpg';
 import './Directory.css'; // assuming you have created the CSS file for styling
 const directoryData = [
   { 
-    name: 'John Das',
+    name: 'Mukit Mahdin',
     image: Man1, // placeholder image
     company: 'ABC Inc',
     institute: 'IUT',
@@ -20,7 +21,7 @@ const directoryData = [
     location: 'New York'
   },
   {
-    name: 'Jane Smith',
+    name: 'Zannatul Ferdous',
     image: woman1, // placeholder image
     company: 'XYZ Corp',
     institute: 'Stanford',
@@ -30,7 +31,7 @@ const directoryData = [
     location: 'San Francisco'
   },
   {
-    name: 'Bob Johnson',
+    name: 'Samin Sadaf',
     image: Amar,  // placeholder image
     company: 'PQR Ltd',
     institute: 'MIT',
@@ -40,8 +41,8 @@ const directoryData = [
     location: 'Boston'
   },
   {
-    name: 'Alice Lee',
-    image: 'https://via.placeholder.com/150', // placeholder image
+    name: 'Mahfuj Anan',
+    image: Anan, // placeholder image
     company: 'LMN LLC',
     institute: 'Harvard',
     year: '2017',
@@ -50,7 +51,7 @@ const directoryData = [
     location: 'Cambridge'
   },
   {
-    name: 'David Kim',
+    name: 'Tamzid Bakht',
     image: Man2, // placeholder image
     company: 'EFG Co',
     institute: 'Caltech',
@@ -60,17 +61,7 @@ const directoryData = [
     location: 'Los Angeles'
   },
   {
-    name: 'Samantha Lee',
-    image: Man3, // placeholder image
-    company: 'JKL Inc',
-    institute: 'UC Berkeley',
-    year: '2021',
-    skills: ['PHP', 'WordPress'],
-    research: 'Content Management',
-    location: 'Berkeley'
-  },
-  {
-    name: 'Tom Wilson',
+    name: 'Nibir Kabir',
     image: woman2, // placeholder image
     company: 'STU Corp',
     institute: 'Oxford',
@@ -80,8 +71,8 @@ const directoryData = [
     location: 'London'
   },
   {
-    name: 'Emily Chen',
-    image: 'https://via.placeholder.com/150', // placeholder image
+    name: 'Ridun',
+    image: Ridun, // placeholder image
     company: 'VWX Ltd',
     institute: 'Yale',
     year: '2022',
@@ -90,37 +81,7 @@ const directoryData = [
     location: 'New Haven'
   },
   {
-    name: 'Jack Wang',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'YZA Inc',
-    institute: 'Princeton',
-    year: '2020',
-    skills: ['Python', 'Django'],
-    research: 'Backend Development',
-    location: 'Princeton'
-  },
-  {
-    name: 'Karen Kim',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'ABC Inc',
-    institute: 'Stanford',
-    year: '2019',
-    skills: ['React', 'Node.js'],
-    research: 'Machine Learning',
-    location: 'San Francisco'
-  },
-  {
-    name: 'Linda Nguyen',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'GHI Inc',
-    institute: 'UC San Diego',
-    year: '2021',
-    skills: ['JavaScript', 'React Native'],
-    research: 'Mobile App Development',
-    location: 'San Diego'
-  },
-  {
-    name: 'Kevin Lee',
+    name: 'Siam Sindeed Khan',
     image: ManorWoman, // placeholder image
     company: 'JKL Ltd',
     institute: 'Cornell',
@@ -129,76 +90,6 @@ const directoryData = [
     research: 'Web Development',
     location: 'Ithaca'
   },
-  {
-    name: 'Rachel Kim',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'MNO Co',
-    institute: 'UCLA',
-    year: '2019',
-    skills: ['PHP', 'Laravel'],
-    research: 'Backend Development',
-    location: 'Los Angeles'
-  },
-  {
-    name: 'Henry Wu',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'PQR Inc',
-    institute: 'University of Toronto',
-    year: '2020',
-    skills: ['C++', 'OpenCV'],
-    research: 'Computer Vision',
-    location: 'Toronto'
-  },
-  {
-    name: 'Emma Chen',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'STU Ltd',
-    institute: 'Harvard',
-    year: '2017',
-    skills: ['Ruby', 'Rails'],
-    research: 'Web Development',
-    location: 'Cambridge'
-  },
-  {
-    name: 'David Park',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'VWX Co',
-    institute: 'UC Berkeley',
-    year: '2021',
-    skills: ['Python', 'Django'],
-    research: 'Backend Development',
-    location: 'Berkeley'
-  },
-  {
-    name: 'Sophie Kim',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'YZA Ltd',
-    institute: 'Stanford',
-    year: '2019',
-    skills: ['React', 'Node.js'],
-    research: 'Machine Learning',
-    location: 'San Francisco'
-  },
-  {
-    name: 'Alex Lee',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'ABC Inc',
-    institute: 'MIT',
-    year: '2018',
-    skills: ['Python', 'PyTorch'],
-    research: 'Artificial Intelligence',
-    location: 'Boston'
-  },
-  {
-    name: 'Olivia Chen',
-    image: 'https://via.placeholder.com/150', // placeholder image
-    company: 'DEF Corp',
-    institute: 'Yale',
-    year: '2022',
-    skills: ['Swift', 'iOS'],
-    research: 'Mobile Development',
-    location: 'New Haven'
-  },  
   // ... more directory data objects
 ];
 
@@ -210,7 +101,6 @@ function Directory() {
   const [filteredData, setFilteredData] = useState(directoryData);
   const [activePage, setActivePage] = useState(1);
   const pageSize = 20;
-  const totalPages = Math.ceil(filteredData.length / pageSize);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -223,10 +113,6 @@ function Directory() {
     });
     setFilteredData(filtered);
     setActivePage(1);
-  }
-
-  const handlePageChange = (pageNumber) => {
-    setActivePage(pageNumber);
   }
 
   const renderCards = () => {
@@ -276,18 +162,6 @@ function Directory() {
     <Row className="card-row">
       {renderCards()}
     </Row>
-    <div className="pagination-container">
-  <Pagination className="pagination" size="lg">
-    <Pagination.First disabled={activePage === 1} onClick={() => handlePageChange(1)} />
-    <Pagination.Prev disabled={activePage === 1} onClick={() => handlePageChange(activePage - 1)} />
-    {[...Array(totalPages).keys()].map((pageNumber) => (
-      <Pagination.Item key={pageNumber + 1} active={pageNumber + 1 === activePage} onClick={() => handlePageChange(pageNumber + 1)}>{pageNumber + 1}</Pagination.Item>
-    ))}
-    <Pagination.Next disabled={activePage === totalPages || activePage >= totalPages} onClick={() => handlePageChange(activePage + 1)} />
-    <Pagination.Last disabled={activePage === totalPages} onClick={() => handlePageChange(totalPages)} />
-  </Pagination>
-</div>
-
   </Container>
 </div>
   );
