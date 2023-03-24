@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import Amar from "../20230306_144219.jpg";
+import Amar from "../anan.jpg";
 import Anan from "../anan.jpg";
 import Man1 from "../mukit.jpg";
 import woman2 from "../nibir.jpg";
