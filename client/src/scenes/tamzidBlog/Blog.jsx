@@ -15,38 +15,18 @@ import {
   import { setPost, setBlog } from "state";
   
   const Blog = ({
-    blogId,
     blogUserId,
     name,
     description,
     role,
     picturePath,
     userPicturePath,
-    register,
   }) => {
-    const [isComments, setIsComments] = useState(false);
-    const dispatch = useDispatch();
-    const token = useSelector((state) => state.token);
-    const loggedInUserId = useSelector((state) => state.user._id);
-    const isRegistered = Boolean(register[loggedInUserId]);
-    const registerCount = Object.keys(register).length;
+
   
     const { palette } = useTheme();
     const main = palette.neutral.main;
-    const primary = palette.primary.main;
   
-    const patchLike = async () => {
-      const response = await fetch(`http://localhost:3001/blogs/${blogId}/like`, {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId: loggedInUserId }),
-      });
-      const updatedBlog = await response.json();
-      dispatch(setBlog({ blog: updatedBlog }));
-    };
   
     return (
       <WidgetWrapper m="2rem 0">

@@ -35,7 +35,7 @@ const Blogs = ({ userId, isProfile = false }) => {
     } else {
       getBlogs();
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); 
 
   
   return (
@@ -51,7 +51,6 @@ const Blogs = ({ userId, isProfile = false }) => {
           picturePath,
           userPicturePath,
           register,
-          // comments,
         }) => (
           <Blog
           key={_id}
@@ -63,7 +62,6 @@ const Blogs = ({ userId, isProfile = false }) => {
           picturePath={picturePath}
           userPicturePath={userPicturePath}
           register={register}
-          // comments={comments}
           style={{
             maxWidth: '500px',
             border: '1px solid #ddd',
