@@ -3,6 +3,7 @@ import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/sadafprofile/Profile.js";
 import BlogPage from "scenes/tamzidBlog/MyBlog.jsx";
+import BlogDetails from "scenes/tamzidBlog/BlogDetails.jsx";
 import AllBlogs from "scenes/tamzidBlog/Blogs.jsx";
 import IutProfilePage from "scenes/sadafSearchDirectory/components/Directory.js";
 import { useMemo } from "react";
@@ -45,6 +46,8 @@ function App() {
               path="/allblogs"
               element={isAuth ? <AllBlogs /> : <Navigate to="/" />}
             />
+            <Route exact path="/allblogs" component={AllBlogs} />
+            <Route path="/blogs/:blogId" component={BlogDetails} />
 
             <Route
               path="/iutProfile"
