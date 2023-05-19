@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-
+import { useNavigate } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
     display: 'flex',
@@ -71,7 +71,7 @@ const Blogs = ({ userId, isProfile = false }) => {
   }, [words.length]);
 
 
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const blogs = useSelector((state)=> state.blogs);
   const token = useSelector((state) => state.token);
@@ -109,9 +109,9 @@ const Blogs = ({ userId, isProfile = false }) => {
   return (
     <div>
       <Navbar />
-      <div >
-        <div style={{ height: '2px', textAlign: 'left', position:'sticky', top:'70px', marginLeft:'30px' }}>
+      <div>
         
+        <div style={{ height: '2px', textAlign: 'left', position:'sticky', top:'70px', marginLeft:'30px' }}>       
           {showLine && (
             <div style={{ textAlign: 'left' }}>
               {words.map((word, index) => (
@@ -131,8 +131,10 @@ const Blogs = ({ userId, isProfile = false }) => {
             </div>
           )}
         </div>
+        <div style={{display:'flex'}}>
+       
         
-        <div style={{ padding: '0 350px',}}>
+        <div style={{ padding: '0 0 0 300px',}}>
         {blogs.map(
         ({
           _id,
@@ -158,20 +160,29 @@ const Blogs = ({ userId, isProfile = false }) => {
     )}
     
         </div>
-
-    </div>
-
-    <div class="card" style={{boxShadow:'0 4px 8px 4px rgba(0,0,0,0.2', height:'450px', maxWidth: '303px'}}>
-      <img src={IUTImage} style={{width:'100%'}}/>
-      <div class="container" style={{padding: '2px 16px'}}>
-        <div style={{ fontWeight: 'bold', fontSize: '20px', fontFamily: 'cursive', color: '#5C0404', textAlign: 'center', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
-          <h4>
-            Embark on a journey of <span style={{ color: '#5C0404' }}>self-expression</span>, where every word paints a vivid canvas of <span style={{ color: '#5C0404' }}>thoughts</span> and <span style={{ color: '#5C0404' }}>ideas</span>.
-          </h4>
+        <div style={{paddingRight:'150px' }}>
+          
+          <div class="card" style={{boxShadow:'0 4px 8px 4px rgba(0,0,0,0.2', position:'sticky',top: '50px', height:'450px', maxWidth: '350px', marginLeft:'95px', marginRight:'50px', marginTop:'30px'}}>
+            <img src={IUTImage} style={{width:'100%'}}/>
+            <div class="container" style={{padding: '2px 16px'}}>
+              <div style={{ fontWeight: 'bold', fontSize: '20px', fontFamily: 'cursive', color: '#5C0404', textAlign: 'center', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>
+                <h4>
+                  Embark on a journey of <span style={{ color: '#5C0404' }}>self-expression</span>, where every word paints a vivid canvas of <span style={{ color: '#5C0404' }}>thoughts</span> and <span style={{ color: '#5C0404' }}>ideas</span>.
+                </h4>
+                <button style={{background: '#5C0404',color: '#FFFFFF',padding: '10px 20px',border: 'none',borderRadius: '4px',fontSize: '16px',fontWeight: 'bold',cursor: 'pointer',marginTop: '10px',boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',transition: 'background 0.3s ease',}}   onMouseEnter={(e) => e.target.style.background = 'black'}
+                onMouseLeave={(e) => e.target.style.background = '#5C0404'} onClick={() => navigate("/blog")}
+                >
+                  Share Your Insights
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
+
+   
     
 </div>
   );
