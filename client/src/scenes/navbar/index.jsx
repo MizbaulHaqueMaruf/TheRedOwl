@@ -143,7 +143,7 @@ const Navbar = () => {
                 fontWeight="Medium"
                 fontSize="clamp(0.5rem, 1rem, 1.25rem)"
                 color="primary"
-                onClick={() => navigate("/blog")}
+                onClick={() => navigate("/allblogs")}
                 sx={{
                   "&:hover": {
                     color: primaryLight,
