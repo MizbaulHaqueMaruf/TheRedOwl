@@ -19,7 +19,11 @@ import FlexBetween from "components/FlexBetween";
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
+  email: yup
+    .string()
+    .email("invalid email")
+    .required("required")
+    .matches(/@iut-dhaka\.edu$/, "Email must be from @iut-dhaka.edu domain"),
   password: yup.string().required("required"),
   role: yup.string().required("required"),
   studentId: yup.string().required("required"),
@@ -27,7 +31,11 @@ const registerSchema = yup.object().shape({
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("invalid email").required("required"),
+  email: yup
+    .string()
+    .email("invalid email")
+    .required("required")
+    .matches(/@iut-dhaka\.edu$/, "Email must be from @iut-dhaka.edu domain"),
   password: yup.string().required("required"),
 });
 
