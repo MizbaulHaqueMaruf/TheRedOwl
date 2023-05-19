@@ -19,15 +19,30 @@ import FlexBetween from "components/FlexBetween";
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  password: yup.string().required("required"),
+  email: yup
+    .string()
+    .email("invalid email")
+    .required("required")
+    .matches(/@iut-dhaka\.edu$/, "Email must be from @iut-dhaka.edu domain"),
+  password: yup
+    .string()
+    .required("required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/,
+      "Password must contain at least one number and one special character"
+    ),
   role: yup.string().required("required"),
   studentId: yup.string().required("required"),
   picture: yup.string().required("required"),
 });
 
 const loginSchema = yup.object().shape({
-  email: yup.string().email("invalid email").required("required"),
+  email: yup
+    .string()
+    .email("invalid email")
+    .required("required")
+    .matches(/@iut-dhaka\.edu$/, "Email must be from @iut-dhaka.edu domain"),
   password: yup.string().required("required"),
 });
 
