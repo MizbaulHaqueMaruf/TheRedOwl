@@ -24,7 +24,14 @@ const registerSchema = yup.object().shape({
     .email("invalid email")
     .required("required")
     .matches(/@iut-dhaka\.edu$/, "Email must be from @iut-dhaka.edu domain"),
-  password: yup.string().required("required"),
+  password: yup
+    .string()
+    .required("required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(
+      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/,
+      "Password must contain at least one number and one special character"
+    ),
   role: yup.string().required("required"),
   studentId: yup.string().required("required"),
   picture: yup.string().required("required"),
