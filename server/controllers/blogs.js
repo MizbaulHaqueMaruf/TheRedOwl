@@ -4,13 +4,14 @@ import Blog from "../models/Blog.js";
 
 export const createBlog = async (req, res) => {
   try {
-    const { userId, description, picturePath } = req.body;
+    const { userId, description,title, picturePath } = req.body;
     const user = await User.findById(userId);
     const newBlog = new Blog({
       userId,
       firstName: user.firstName,
       lastName: user.lastName,
       role: user.role,
+      title,
       description,
       userPicturePath: user.picturePath,
       picturePath,
@@ -26,17 +27,18 @@ export const createBlog = async (req, res) => {
 
 export const getFeedBlogs = async (req, res) => {
   try {
-    const blog = await Blog.find();
-    res.status(200).json(blog);
+    const blogs = await Blog.find({}, { title: 1, description: 1 });
+    res.status(200).json(blogs);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
 
+
 export const getUserBlogs = async (req, res) => {
   try {
     const { userId } = req.params;
-    const blog = await Blog.find({ userId });
+    const blog = await Blog.find({ userId }).select('title description');
     res.status(200).json(blog);
   } catch (err) {
     res.status(404).json({ message: err.message });

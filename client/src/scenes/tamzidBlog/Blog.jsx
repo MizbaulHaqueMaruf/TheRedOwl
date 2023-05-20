@@ -26,6 +26,7 @@ import {
   const Blog = ({
     blogUserId,
     name,
+    title,
     description,
     role,
     picturePath,
@@ -55,6 +56,9 @@ import {
           subtitle={role}
           userPicturePath={userPicturePath}
         />
+        <Typography variant="h4" color={main} sx={{ mt: '1rem' }}>
+        {title}
+        </Typography>
         <Typography color={main} sx={{ mt: '1rem' }}>
           {getDescription()}
         </Typography>
@@ -67,7 +71,7 @@ import {
             src={`http://localhost:3001/assets/${picturePath}`}
           />
         )}
-      <button onClick={toggleDescription} className="read-more-button">
+      <button onClick={toggleDescription} style={{ border: 'none',borderRadius: '20px',padding: '8px 15px',fontSize: '16px',fontWeight: 'bold',cursor: 'pointer',transition: 'background-color 0.3s ease'}} className="read-more-button">
         {showFullDescription ? (
         <>
          <FontAwesomeIcon icon={faAngleUp} />

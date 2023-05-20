@@ -141,6 +141,7 @@ const Blogs = ({ userId, isProfile = false }) => {
           userId,
           firstName,
           lastName,
+          title,
           description,
           role,
           picturePath,
@@ -151,6 +152,7 @@ const Blogs = ({ userId, isProfile = false }) => {
           blogId={_id}
           blogUserId={userId}
           name={`${firstName} ${lastName}`}
+          title={title}
           description={description}
           role={role}
           picturePath={picturePath}
