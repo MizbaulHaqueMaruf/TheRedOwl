@@ -1,6 +1,11 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+/////
+import Token from "../models/token.js";
+// import sendEmail from "../utils/sendEmail.js";
+import { sendEmail } from "../utils/sendEmail.js";
+import crypto from "crypto";
 
 /* REGISTER USER */
 export const register = async (req, res) => {
@@ -32,11 +37,29 @@ export const register = async (req, res) => {
       // impressions: Math.floor(Math.random() * 10000),
     });
     const savedUser = await newUser.save();
+    /////////
+
+    const token = await new Token({
+      userId: user._id,
+      token: crypto.randomBytes(32).toString("hex"),
+    }).save();
+    const url = `${process.env.BASE_URL}users/${user.id}/verify/${token.token}`;
+    await sendEmail(user.email, "Verify Email", url);
+
+    res
+      .status(201)
+      .send({ message: "An Email sent to your account please verify" });
+
+    ////////
     res.status(201).json(savedUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
+///////////////////
+
+//////////////////
 
 /* LOGGING IN */
 export const login = async (req, res) => {
