@@ -86,8 +86,11 @@ const BasicInfo = ({ user_id }) => {
         requestOptions
       );
       const data = await response.json();
-      if (data) setIsEditMode(false);
-    } catch (error) {
+      if (data) {
+        setIsEditMode(false);
+        window.location.reload();
+      }
+      } catch (error) {
       console.error(error);
       // Handle the error scenario
     }

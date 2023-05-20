@@ -64,6 +64,7 @@ const Address = ({ user_id }) => {
       .then((data) => {
         console.log(data); // Handle the response as needed
         setIsEditable(false); // Exit edit mode after successfully saving the profile
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
