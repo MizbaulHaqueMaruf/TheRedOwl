@@ -16,6 +16,7 @@ const blogSchema = mongoose.Schema(
     },
     role: String,
     description: String,
+    title:String,
     picturePath: String,
     userPicturePath: String,
     register: {

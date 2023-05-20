@@ -40,11 +40,19 @@ export const authSlice = createSlice({
       state.posts = updatedPosts;
     },
     setBlogs: (state, action) => {
-      state.blogs = action.payload.blogs;
+      state.blogs = action.payload.blogs.map((blog) => ({
+        ...blog,
+        title: blog.title, // Add the title property to the blog object
+      }));
     },
     setBlog: (state, action) => {
       const updatedBlogs = state.blogs.map((blog) => {
-        if (blog._id === action.payload.blog._id) return action.payload.blog;
+        if (blog._id === action.payload.blog._id) {
+          return {
+            ...action.payload.blog,
+            title: action.payload.blog.title, // Add the title property to the updated blog object
+          };
+        }
         return blog;
       });
       state.blogs = updatedBlogs;
