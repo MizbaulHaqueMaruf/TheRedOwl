@@ -1,21 +1,23 @@
-import express from "express";
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import multer from "multer";
+import express from "express";
 import helmet from "helmet";
+import mongoose from "mongoose";
 import morgan from "morgan";
+import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
-import authRoutes from "./routes/auth.js";
-import userRoutes from "./routes/users.js";
-import postRoutes from "./routes/posts.js";
-import blogRoutes from "./routes/blogs.js"
 import { register } from "./controllers/auth.js";
-import { createPost } from "./controllers/posts.js";
 import { createBlog } from "./controllers/blogs.js";
+import { createPost } from "./controllers/posts.js";
+import { updateBasicInfo } from "./controllers/users.js";
 import { verifyToken } from "./middleware/auth.js";
+import authRoutes from "./routes/auth.js";
+import blogRoutes from "./routes/blogs.js";
+import postRoutes from "./routes/posts.js";
+import searchRoutes from "./routes/search.js";
+import userRoutes from "./routes/users.js";
 // import User from "./models/User.js";
 // import Post from "./models/Post.js";
 // import { users, posts } from "./data/index.js";
@@ -49,15 +51,16 @@ const upload = multer({ storage });
 app.post("/auth/register", upload.single("picture"), register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 app.post("/blogs", verifyToken, upload.single("picture"), createBlog);
-
+app.patch("/users/updateBasicInfo", verifyToken, upload.single("picture"), updateBasicInfo);
 /* ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 app.use("/blogs", blogRoutes);
+app.use("/search", searchRoutes);
 
 /* MONGOOSE SETUP */
-const PORT = process.env.PORT || 6001;
+const PORT = process.env.PORT || 3001;
 mongoose.set("strictQuery", false);
 mongoose
   .connect(process.env.MONGO_URL, {

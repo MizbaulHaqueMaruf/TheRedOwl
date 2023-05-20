@@ -1,16 +1,45 @@
 import { IconButton } from "@material-ui/core";
-import CloseIcon from '@material-ui/icons/Close';
-import EditIcon from '@material-ui/icons/Edit';
-import SaveIcon from '@material-ui/icons/Save';
-import { useState } from "react";
+import CloseIcon from "@material-ui/icons/Close";
+import EditIcon from "@material-ui/icons/Edit";
+import SaveIcon from "@material-ui/icons/Save";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./Skills.css";
 
-const Skills = () => {
+const Skills = ({ user_id }) => {
+  const loggedInUserId = useSelector((state) => state.user._id);
+  const isOwnerProfile = loggedInUserId === user_id;
   const [editing, setEditing] = useState(false);
   const [skills, setSkills] = useState([]);
+  const token = useSelector((state) => state.token);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/users/${user_id}`, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await response.json();
+        if (data && data.skills) {
+          setSkills(data.skills);
+        }
+        if (data) setUser(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getUser();
+  }, [user_id, token]);
+
+  if (!user) {
+    return null;
+  }
 
   const addSkills = () => {
-    setSkills([...skills, ""]);
+    setSkills([...skills, { skill: "" }]);
   };
 
   const removeSkills = (index) => {
@@ -21,53 +50,78 @@ const Skills = () => {
 
   const handleSkillChange = (event, index) => {
     const updatedSkills = [...skills];
-    updatedSkills[index] = event.target.value;
+    updatedSkills[index].skill = event.target.value;
     setSkills(updatedSkills);
   };
 
   const handleSave = () => {
-    setEditing(false);
+    const requestBody = {
+      id: user_id,
+      skills: skills,
+    };
+    const requestOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(requestBody),
+    };
+    fetch("http://localhost:3001/users/updateSkills", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle the response as needed
+        setEditing(false); // Exit edit mode after successfully saving the profile
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <div className="skills">
       <div className="skills_top">
         <h3>Skills</h3>
-        {!editing ? (
+        {!editing && isOwnerProfile && (
           <IconButton fontSize="inherit" onClick={() => setEditing(true)}>
-            <EditIcon fontSize="small"/>
+            <EditIcon fontSize="small" style={{ fontSize: "smaller" }} />
           </IconButton>
-        ) : (
+        )}
+        {editing && isOwnerProfile && (
           <IconButton fontSize="small" onClick={handleSave}>
-            <SaveIcon fontSize="small"/>
+            <SaveIcon fontSize="small" />
           </IconButton>
         )}
       </div>
-      {editing ? (
+      {editing && isOwnerProfile ? (
         <>
           <div className="skills_editing">
-            {skills.map((interest, index) => (
+            {skills.map((skill, index) => (
               <div key={index} className="skill">
                 <input
                   type="text"
-                  value={interest}
+                  value={skill.skill}
                   onChange={(event) => handleSkillChange(event, index)}
                 />
-                <IconButton onClick={() => removeSkills(index)}>
-                  <CloseIcon fontSize="small"/>
-                </IconButton>
+                {isOwnerProfile && (
+                  <IconButton onClick={() => removeSkills(index)}>
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                )}
               </div>
             ))}
           </div>
-          <IconButton className="add_button" onClick={addSkills} fontSize="small">
-            <span>+</span>
-          </IconButton>
+          {isOwnerProfile && (
+            <IconButton className="add_button" onClick={addSkills} fontSize="small">
+              <span>+</span>
+            </IconButton>
+          )}
         </>
       ) : (
         <div className="skills_lists">
-          {skills.map((interest, index) => (
+          {skills.map((skill, index) => (
             <div key={index} className="skill_name">
-              {interest}
+              {skill.skill}
             </div>
           ))}
         </div>
