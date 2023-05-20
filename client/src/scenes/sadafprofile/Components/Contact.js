@@ -74,6 +74,7 @@ const Contact = ({user_id}) => {
       .then(response => response.json())
       .then(data => {
         console.log(data); // Handle the response as needed
+        window.location.reload();
         setIsEditMode(false); // Exit edit mode after successfully saving the profile
       })
       .catch(error => {
