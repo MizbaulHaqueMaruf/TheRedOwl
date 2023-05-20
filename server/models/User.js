@@ -35,10 +35,6 @@ const UserSchema = new mongoose.Schema(
     // },
     role: String,
     studentId: String,
-    verified: {
-      type: Boolean,
-      default: false,
-    },
     // viewedProfile: Number,
     // impressions: Number,
   },
