@@ -1,15 +1,15 @@
-import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
-import HomePage from "scenes/homePage";
-import LoginPage from "scenes/loginPage";
-import ProfilePage from "scenes/sadafProfile/Profile.js";
-import BlogPage from "scenes/tamzidBlog/MyBlog.jsx";
-import BlogDetails from "scenes/tamzidBlog/BlogDetails.jsx";
-import AllBlogs from "scenes/tamzidBlog/Blogs.jsx";
-import IutProfilePage from "scenes/sadafSearchDirectory/components/Directory.js";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import HomePage from "scenes/homePage";
+import LoginPage from "scenes/loginPage";
+import IutProfilePage from "scenes/sadafSearchDirectory/components/Directory.js";
+import ProfilePage from "scenes/sadafprofile/Profile.js";
+import BlogDetails from "scenes/tamzidBlog/BlogDetails.jsx";
+import AllBlogs from "scenes/tamzidBlog/Blogs.jsx";
+import BlogPage from "scenes/tamzidBlog/MyBlog.jsx";
 import { themeSettings } from "./theme";
 ///
 import EmailVerify from "scenes/EmailVerify";

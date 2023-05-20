@@ -3,14 +3,45 @@ import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./Education.css";
 
-const Education = () => {
+const Education = ({ user_id }) => {
+  const loggedInUserId = useSelector((state) => state.user._id);
+  const isOwnerProfile = loggedInUserId === user_id;
   const [educations, setEducations] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [newEducation, setNewEducation] = useState({});
-
+  const token = useSelector((state) => state.token);
+  const [user, setUser] = useState(null);
+  const getUser = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/users/${user_id}`, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await response.json();
+      if (data && data.education) {
+        const formattedEducations = data.education.map((edu) => ({
+          degree: edu.degree,
+          institute: edu.institute,
+          years: edu.years,
+        }));
+        setEducations(formattedEducations);
+      }
+      setUser(data);
+      if (data) setUser(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+  if (!user) {
+    return null;
+  }
   const handleAddEducation = () => {
     setIsEditing(true);
     setNewEducation({});
@@ -22,16 +53,60 @@ const Education = () => {
   };
 
   const handleSaveEducation = () => {
+    const updatedEducations = [...educations, newEducation];
     setEducations((prevEducations) => [...prevEducations, newEducation]);
-    setIsEditing(false);
+    const requestBody = {
+      id: user_id,
+      education: updatedEducations,
+    };
+    const requestOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(requestBody),
+    };
+    fetch("http://localhost:3001/users/updateEducation", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle the response as needed
+        setIsEditing(false); // Exit edit mode after successfully saving the profile
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     setNewEducation({});
   };
 
   const handleDeleteEducation = (index) => {
-    setEducations((prevEducations) => [
-      ...prevEducations.slice(0, index),
-      ...prevEducations.slice(index + 1),
-    ]);
+    const updatedEducations = [...educations];
+    updatedEducations.splice(index, 1);
+
+    const requestBody = {
+      id: user._id, // Assuming the user object has an _id property
+      index: index,
+    };
+
+    const requestOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(requestBody),
+    };
+
+    fetch("http://localhost:3001/users/deleteEducation", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle the response as needed
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    setEducations(updatedEducations);
   };
 
   const handleEditEducation = (index) => {
@@ -44,14 +119,16 @@ const Education = () => {
     <div className="education">
       <div className="education_top">
         <h3>Education</h3>
-        {isEditing ? (
-          <IconButton onClick={handleSaveEducation} fontSize='small'>
-            <SaveIcon fontSize="small"/>
+        {isEditing && isOwnerProfile ? (
+          <IconButton onClick={handleSaveEducation} fontSize="small">
+            <SaveIcon fontSize="small" />
           </IconButton>
         ) : (
-          <IconButton onClick={handleAddEducation} fontSize='small'>
-            <AddIcon fontSize="small"/>
-          </IconButton>
+          isOwnerProfile && (
+            <IconButton onClick={handleAddEducation} fontSize="small">
+              <AddIcon fontSize="small" />
+            </IconButton>
+          )
         )}
       </div>
       <div className="education_list">
@@ -61,16 +138,26 @@ const Education = () => {
             <ul>{education.institute}</ul>
             <ul>{education.years}</ul>
             <div className="education_buttons">
-              <IconButton onClick={() => handleEditEducation(index)} fontSize='small'>
-                <EditIcon fontSize="small"/>
-              </IconButton>
-              <IconButton onClick={() => handleDeleteEducation(index)} fontSize='small'>
-                <DeleteIcon fontSize="small"/>
-              </IconButton>
+              {isOwnerProfile && isEditing && (
+                <IconButton
+                  onClick={() => handleEditEducation(index)}
+                  fontSize="small"
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              )}
+              {isOwnerProfile && (
+                <IconButton
+                  onClick={() => handleDeleteEducation(index)}
+                  fontSize="small"
+                >
+                  <DeleteIcon fontSize="small" />
+                </IconButton>
+              )}
             </div>
           </div>
         ))}
-        {isEditing && (
+        {isEditing && isOwnerProfile && (
           <div className="education_item">
             <input
               type="text"
@@ -106,4 +193,3 @@ const Education = () => {
 };
 
 export default Education;
-

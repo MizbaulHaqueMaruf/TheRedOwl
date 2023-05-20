@@ -1,15 +1,12 @@
 import {
-  ManageAccountsOutlined,
-  EditOutlined,
-  LocationOnOutlined,
-  WorkOutlineOutlined,
+  EditOutlined
 } from "@mui/icons-material";
-import { Box, Typography, Divider, useTheme } from "@mui/material";
-import UserImage from "components/UserImage";
+import { Box, Divider, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
+import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const UserWidget = ({ userId, picturePath }) => {
@@ -46,8 +43,8 @@ const UserWidget = ({ userId, picturePath }) => {
       <FlexBetween
         gap="0.5rem"
         pb="1.1rem"
-        // onClick={() => navigate(`/profile/${userId}`)}// actual path should be this after backend addition
-        onClick={() => navigate(`/profile`)}
+        onClick={() => navigate(`/profile/${userId}`)}// actual path should be this after backend addition
+        
       >
         <FlexBetween gap="1rem">
           <UserImage image={picturePath} />
