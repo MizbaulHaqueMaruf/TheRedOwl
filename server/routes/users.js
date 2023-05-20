@@ -1,17 +1,8 @@
 import express from "express";
 import {
-  addRemoveFriend,
-  deleteEducation,
-  deleteExperience,
   getUser,
   getUserFriends,
-  updateAddress,
-  updateEducation,
-  updateExperience,
-  updateIntro,
-  updateResearchInterests,
-  updateSkills,
-  updateSocialMedia
+  addRemoveFriend,
 } from "../controllers/users.js";
 import { verifyToken } from "../middleware/auth.js";
 
@@ -22,15 +13,6 @@ router.get("/:id", verifyToken, getUser);
 router.get("/:id/friends", verifyToken, getUserFriends);
 
 /* UPDATE */
-
 router.patch("/:id/:friendId", verifyToken, addRemoveFriend);
-router.patch("/updateIntro", verifyToken, updateIntro);
-router.patch("/updateSocialMedia",verifyToken, updateSocialMedia);
-router.patch("/updateEducation", verifyToken, updateEducation);
-router.patch("/updateExperience",verifyToken, updateExperience);
-router.patch("/deleteEducation", verifyToken, deleteEducation);
-router.patch("/deleteExperience", verifyToken, deleteExperience);
-router.patch("/updateResearchInterests", verifyToken, updateResearchInterests);
-router.patch("/updateSkills", verifyToken, updateSkills);
-router.patch("/updateAddress", verifyToken, updateAddress);
+
 export default router;

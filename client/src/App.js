@@ -11,8 +11,6 @@ import BlogDetails from "scenes/tamzidBlog/BlogDetails.jsx";
 import AllBlogs from "scenes/tamzidBlog/Blogs.jsx";
 import BlogPage from "scenes/tamzidBlog/MyBlog.jsx";
 import { themeSettings } from "./theme";
-///
-import EmailVerify from "scenes/EmailVerify";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -55,8 +53,6 @@ function App() {
               path="/iutProfile"
               element={isAuth ? <IutProfilePage /> : <Navigate to="/" />}
             />
-
-            <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
