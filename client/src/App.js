@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
-import ProfilePage from "scenes/sadafprofile/Profile.js";
+import ProfilePage from "scenes/sadafProfile/Profile.js";
 import BlogPage from "scenes/tamzidBlog/MyBlog.jsx";
 import BlogDetails from "scenes/tamzidBlog/BlogDetails.jsx";
 import AllBlogs from "scenes/tamzidBlog/Blogs.jsx";
