@@ -89,6 +89,8 @@ import {
             fontWeight: 'bold',
             cursor: 'pointer',
             transition: 'background-color 0.3s ease',
+            backgroundColor:'#f5f5f5',
+            color:'black'
           }}
           className="read-more-button"
         >
