@@ -15,7 +15,7 @@ import {
   import { setPost, setBlog } from "state";
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
   import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
-
+  import moment from 'moment';
   
   import React, { useState } from 'react';
   //import { useTheme } from '@mui/material/styles';
@@ -23,6 +23,10 @@ import {
   //import WidgetWrapper from 'path/to/WidgetWrapper'; // Replace with the actual path
   //import Friend from 'path/to/Friend'; // Replace with the actual path
   
+  //import moment from 'moment'; // Import the moment library for date formatting
+
+  //import moment from 'moment'; // Import the moment library for date formatting
+
   const Blog = ({
     blogUserId,
     name,
@@ -31,6 +35,7 @@ import {
     role,
     picturePath,
     userPicturePath,
+    createdAt, // Add the createdAt prop to get the blog's creation date
   }) => {
     const { palette } = useTheme();
     const main = palette.neutral.main;
@@ -48,6 +53,8 @@ import {
       }
     };
   
+    const formattedDate = moment(createdAt).format('MMMM Do YYYY') // Format the createdAt date prop
+
     return (
       <WidgetWrapper m="2rem 0" className="blog-item">
         <Friend
@@ -56,11 +63,12 @@ import {
           subtitle={role}
           userPicturePath={userPicturePath}
         />
-        <Typography variant="h4" color={main} sx={{ mt: '1rem' }}>
-        {title}
+        <Typography variant="h3" color={main} sx={{ mt: '1rem' }}>
+          {title}
         </Typography>
-        <Typography color={main} sx={{ mt: '1rem' }}>
-          {getDescription()}
+          <h9>Written on {formattedDate}</h9> 
+        <Typography variant="h5" color={main} sx={{ mt: '1rem' }}>
+          {getDescription()} {/* Display the formatted date along with the blog */}
         </Typography>
         {picturePath && (
           <img
@@ -71,20 +79,34 @@ import {
             src={`http://localhost:3001/assets/${picturePath}`}
           />
         )}
-      <button onClick={toggleDescription} style={{ border: 'none',borderRadius: '20px',padding: '8px 15px',fontSize: '16px',fontWeight: 'bold',cursor: 'pointer',transition: 'background-color 0.3s ease'}} className="read-more-button">
-        {showFullDescription ? (
-        <>
-         <FontAwesomeIcon icon={faAngleUp} />
-    </>
-  ) : (
-    <>
-       <FontAwesomeIcon icon={faAngleDown} />
-    </>
-  )}
-      </button>
+        <button
+          onClick={toggleDescription}
+          style={{
+            border: 'none',
+            borderRadius: '20px',
+            padding: '8px 15px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            transition: 'background-color 0.3s ease',
+          }}
+          className="read-more-button"
+        >
+          {showFullDescription ? (
+            <>
+              <FontAwesomeIcon icon={faAngleUp} />
+            </>
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faAngleDown} />
+            </>
+          )}
+        </button>
       </WidgetWrapper>
     );
   };
+  
+  
   
   export default Blog;
   
