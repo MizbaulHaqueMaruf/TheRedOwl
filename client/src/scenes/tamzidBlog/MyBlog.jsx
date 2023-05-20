@@ -67,10 +67,10 @@ const MyBlog = ({ picturePath }) => {
       <div>
         <Navbar/>
         
-        <div style={{ maxWidth: '600px', margin: '150px auto', padding: '20px', borderRadius: '10px', boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)', background: 'linear-gradient(to bottom, #ffffff, #f2f2f2)' }}>
+        <div style={{ maxWidth: '1000px',height:'500px', margin: '150px auto', padding: '20px', borderRadius: '10px', boxShadow: '0 9px 9px rgb(58 3 3 / 40%)', background: 'linear-gradient(to bottom, #ffffff, #f2f2f2)' }}>
           <h1 style={{ textAlign: 'center', marginBottom: '20px', color: '#333', fontFamily: "'Times New Roman', serif", fontSize: '36px', letterSpacing: '2px', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Share your thoughts!</h1>
           <div style={{ marginBottom: '20px' }}>
-          <textarea id="title" name="title" placeholder="Write a title" onChange={(e) => setTitle(e.target.value)} value={title} required style={{ width: '100%', height: '200px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px', fontFamily: 'Arial, Helvetica, sans-serif' }}></textarea>
+          <textarea id="title" name="title" placeholder="Give a title" onChange={(e) => setTitle(e.target.value)} value={title} required style={{ width: '100%', height: '50px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px', fontFamily: 'Arial, Helvetica, sans-serif' }}></textarea>
                 
             <textarea id="description" name="description" placeholder="Write a blog" onChange={(e) => setBlog(e.target.value)} value={blog} required style={{ width: '100%', height: '200px', padding: '10px', border: '1px solid #ccc', borderRadius: '5px', fontSize: '16px', fontFamily: 'Arial, Helvetica, sans-serif' }}></textarea>
           </div>

@@ -82,9 +82,12 @@ const Blogs = ({ userId, isProfile = false }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
-    dispatch(setBlogs({ blogs: data }));
+    const sortedBlogs = data.sort((a, b)=> 
+      b.createdAt.localeCompare(a.createdAt)
+    );
+    dispatch(setBlogs({ blogs: sortedBlogs }));
   };
-
+  
   const getUserBlogs = async () => {
     const response = await fetch(
       `http://localhost:3001/blogs/${userId}/blogs`,
@@ -94,9 +97,12 @@ const Blogs = ({ userId, isProfile = false }) => {
       }
     );
     const data = await response.json();
-    dispatch(setBlogs({ blogs: data }));
+    const sortedBlogs = data.sort((a, b)=> 
+      b.createdAt.localeCompare(a.createdAt)
+    );
+    dispatch(setBlogs({ blogs: sortedBlogs }));
   };
-
+  
   useEffect(() => {
     if (isProfile) {
       getUserBlogs();
@@ -104,7 +110,7 @@ const Blogs = ({ userId, isProfile = false }) => {
       getBlogs();
     }
   }, []);
-
+  
   
   return (
     <div>
