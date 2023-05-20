@@ -61,3 +61,7 @@ export const addRemoveFriend = async (req, res) => {
     res.status(404).json({ message: err.message });
   }
 };
+
+///////////////////////////////
+
+///////////////////////////////
