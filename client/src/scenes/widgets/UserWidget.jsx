@@ -1,6 +1,4 @@
-import {
-  EditOutlined
-} from "@mui/icons-material";
+import { EditOutlined } from "@mui/icons-material";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import UserImage from "components/UserImage";
@@ -35,7 +33,7 @@ const UserWidget = ({ userId, picturePath }) => {
     return null;
   }
 
-  const { firstName, lastName, role, studentId, friends } = user;
+  const { firstName, lastName, role, studentId, email } = user;
 
   return (
     <WidgetWrapper>
@@ -43,8 +41,7 @@ const UserWidget = ({ userId, picturePath }) => {
       <FlexBetween
         gap="0.5rem"
         pb="1.1rem"
-        onClick={() => navigate(`/profile/${userId}`)}// actual path should be this after backend addition
-        
+        onClick={() => navigate(`/profile/${userId}`)} // actual path should be this after backend addition
       >
         <FlexBetween gap="1rem">
           <UserImage image={picturePath} />
@@ -71,16 +68,20 @@ const UserWidget = ({ userId, picturePath }) => {
       <Divider />
 
       {/* SECOND ROW */}
-      {/* <Box p="1rem 0">
+      <Box p="1rem 0">
         <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
-          <roleOnOutlined fontSize="large" sx={{ color: main }} />
+          {/* <roleOnOutlined fontSize="large" sx={{ color: main }} /> */}
           <Typography color={medium}>{role}</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap="1rem">
-          <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
+          {/* <WorkOutlineOutlined fontSize="large" sx={{ color: main }} /> */}
           <Typography color={medium}>{studentId}</Typography>
         </Box>
-      </Box> */}
+        <Box display="flex" alignItems="center" gap="1rem">
+          {/* <WorkOutlineOutlined fontSize="large" sx={{ color: main }} /> */}
+          <Typography color={medium}>{email}</Typography>
+        </Box>
+      </Box>
 
       <Divider />
 
@@ -102,8 +103,34 @@ const UserWidget = ({ userId, picturePath }) => {
 
       <Divider />
 
+      <FlexBetween
+        gap="0.5rem"
+        pb="1.1rem"
+        onClick={() => navigate(`/profilePage/${userId}`)} // actual path should be this after backend addition
+      >
+        <FlexBetween gap="1rem">
+          <Box>
+            <Typography
+              variant="h6"
+              color={dark}
+              fontWeight="50"
+              sx={{
+                "&:hover": {
+                  color: palette.primary.light,
+                  cursor: "pointer",
+                },
+              }}
+            >
+              My Events
+            </Typography>
+            {/* <Typography color={medium}>{friends.length} friends</Typography> */}
+          </Box>
+        </FlexBetween>
+        {/* <ManageAccountsOutlined /> */}
+      </FlexBetween>
+
       {/* FOURTH ROW */}
-      <Box p="1rem 0">
+      {/* <Box p="1rem 0">
         <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
           Social Profiles
         </Typography>
@@ -139,7 +166,7 @@ const UserWidget = ({ userId, picturePath }) => {
           </FlexBetween>
           <EditOutlined sx={{ color: main }} />
         </FlexBetween>
-      </Box>
+      </Box> */}
     </WidgetWrapper>
   );
 };
