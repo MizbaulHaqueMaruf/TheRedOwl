@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-
+import Token from "../models/token.js";
 /* READ */
 export const getUser = async (req, res) => {
   try {
@@ -283,3 +283,24 @@ export const updateAddress = async(req, res)=>{
   res.status(500).json({ error: error.message });
 }
 }
+
+/* confirm User */
+
+export const confirmUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.params.id });
+    if (!user) return res.status(400).send({ message: "Invalid link" });
+
+    const token = await Token.findOne({
+      userId: user._id,
+      token: req.params.token,
+    });
+    if (!token) return res.status(404).send({ message: "Token not found" });
+
+    await User.updateOne({ _id: user._id }, { verified: true });
+
+    res.status(200).send({ message: "Email Verified Successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

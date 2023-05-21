@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addRemoveFriend,
+  confirmUser,
   deleteEducation,
   deleteExperience,
   getUser,
@@ -17,10 +18,12 @@ import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
+
+
 /* READ */
 router.get("/:id", verifyToken, getUser);
 router.get("/:id/friends", verifyToken, getUserFriends);
-
+router.get("/verify/:id/:token", confirmUser);
 /* UPDATE */
 
 router.patch("/:id/:friendId", verifyToken, addRemoveFriend);
@@ -33,4 +36,6 @@ router.patch("/deleteExperience", verifyToken, deleteExperience);
 router.patch("/updateResearchInterests", verifyToken, updateResearchInterests);
 router.patch("/updateSkills", verifyToken, updateSkills);
 router.patch("/updateAddress", verifyToken, updateAddress);
+//user confirmation route
+
 export default router;
