@@ -11,6 +11,7 @@ import BlogDetails from "scenes/tamzidBlog/BlogDetails.jsx";
 import AllBlogs from "scenes/tamzidBlog/Blogs.jsx";
 import BlogPage from "scenes/tamzidBlog/MyBlog.jsx";
 import { themeSettings } from "./theme";
+import PP from "scenes/profilePage/index.jsx";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -32,12 +33,10 @@ function App() {
               path="/profile/:userId"
               element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
             />
-
             <Route
               path="/profile"
               element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
             />
-
             <Route
               path="/blog"
               element={isAuth ? <BlogPage /> : <Navigate to="/" />}
@@ -48,10 +47,15 @@ function App() {
             />
             <Route exact path="/allblogs" component={AllBlogs} />
             <Route path="/blogs/:blogId" component={BlogDetails} />
-
             <Route
               path="/iutProfile"
               element={isAuth ? <IutProfilePage /> : <Navigate to="/" />}
+            />
+            ////
+            <Route
+              path="/profilePage/:userId"
+              // path="/profilePage"
+              element={isAuth ? <PP /> : <Navigate to="/" />}
             />
           </Routes>
         </ThemeProvider>

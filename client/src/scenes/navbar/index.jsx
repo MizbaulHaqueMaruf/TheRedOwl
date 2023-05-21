@@ -1,3 +1,5 @@
+///////
+
 import { useState } from "react";
 import {
   Box,
@@ -114,7 +116,6 @@ const Navbar = () => {
               </Typography>
             </Box>
           </FlexBetween>
-
           <FlexBetween gap="1rem">
             <Groups sx={{ fontSize: "25px" }} />
             <Box>
@@ -134,7 +135,6 @@ const Navbar = () => {
               </Typography>
             </Box>
           </FlexBetween>
-
           {/* <NoteAlt sx={{ fontSize: "25px" }} /> */}
           <FlexBetween gap="1rem">
             <MenuBook sx={{ fontSize: "25px" }} />

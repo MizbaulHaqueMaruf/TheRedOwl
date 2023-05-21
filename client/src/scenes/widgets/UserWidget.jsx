@@ -103,6 +103,32 @@ const UserWidget = ({ userId, picturePath }) => {
 
       <Divider />
 
+      <FlexBetween
+        gap="0.5rem"
+        pb="1.1rem"
+        onClick={() => navigate(`/profilePage/${userId}`)} // actual path should be this after backend addition
+      >
+        <FlexBetween gap="1rem">
+          <Box>
+            <Typography
+              variant="h6"
+              color={dark}
+              fontWeight="50"
+              sx={{
+                "&:hover": {
+                  color: palette.primary.light,
+                  cursor: "pointer",
+                },
+              }}
+            >
+              My Events
+            </Typography>
+            {/* <Typography color={medium}>{friends.length} friends</Typography> */}
+          </Box>
+        </FlexBetween>
+        {/* <ManageAccountsOutlined /> */}
+      </FlexBetween>
+
       {/* FOURTH ROW */}
       {/* <Box p="1rem 0">
         <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
