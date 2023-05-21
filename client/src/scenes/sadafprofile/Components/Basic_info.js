@@ -71,7 +71,11 @@ const BasicInfo = ({ user_id }) => {
     formData.append("description", profileDesc);
     formData.append("bloodgroup", bloodGroup);
     formData.append("email", emailId);
-    formData.append("picturePath", profilePic.name);
+    if (profilePic.name) {
+      formData.append("picturePath", profilePic.name);
+    } else {
+      formData.append("picture", profilePic);
+    }
     const requestOptions = {
       method: "PATCH",
       headers: {
@@ -90,7 +94,7 @@ const BasicInfo = ({ user_id }) => {
         setIsEditMode(false);
         window.location.reload();
       }
-      } catch (error) {
+    } catch (error) {
       console.error(error);
       // Handle the error scenario
     }
@@ -211,10 +215,7 @@ const BasicInfo = ({ user_id }) => {
       );
     } else {
       return (
-        <div
-          className="basic_info_option"
-          onClick={() => setIsEditMode(true)}
-        >
+        <div className="basic_info_option" onClick={() => setIsEditMode(true)}>
           {isOwnerProfile && (
             <IconButton>
               <EditIcon fontSize="small" />
@@ -234,8 +235,7 @@ const BasicInfo = ({ user_id }) => {
               color="primary"
               aria-label="upload picture"
               component="span"
-            >
-            </IconButton>
+            ></IconButton>
             {isEditMode && isOwnerProfile && (
               <label>
                 <h6>Update Profile</h6>
@@ -243,14 +243,14 @@ const BasicInfo = ({ user_id }) => {
             )}
           </label>
         )}
-         {renderProfilePic()}
+        {renderProfilePic()}
         {isEditMode && isOwnerProfile && (
           <Dropzone
             acceptedFiles=".jpg,.jpeg,.png"
             multiple={false}
-            onDrop={(acceptedFiles) =>{
-                setProfilePic(acceptedFiles[0]);
-                handleProfilePicChange(acceptedFiles[0]);
+            onDrop={(acceptedFiles) => {
+              setProfilePic(acceptedFiles[0]);
+              handleProfilePicChange(acceptedFiles[0]);
             }}
           >
             {({ getRootProps, getInputProps }) => (
