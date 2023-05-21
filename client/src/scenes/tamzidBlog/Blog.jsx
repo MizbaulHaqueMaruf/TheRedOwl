@@ -47,11 +47,16 @@ import {
   
     const getDescription = () => {
       if (showFullDescription) {
-        return description;
+        return description.split('\n').map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ));
       } else {
-        return description.substring(0, 500) + '...';
+        const truncatedDescription = description.substring(0, 500);
+        const paragraphs = truncatedDescription.split('\n');
+        return paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>);
       }
     };
+    
   
     const formattedDate = moment(createdAt).format('MMMM Do YYYY') // Format the createdAt date prop
 
@@ -68,7 +73,7 @@ import {
         </Typography>
           <h9>Written on {formattedDate}</h9> 
         <Typography variant="h5" color={main} sx={{ mt: '1rem' }}>
-          {getDescription()} {/* Display the formatted date along with the blog */}
+          {getDescription()} 
         </Typography>
         {picturePath && (
           <img
