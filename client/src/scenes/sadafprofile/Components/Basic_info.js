@@ -71,8 +71,13 @@ const BasicInfo = ({ user_id }) => {
     formData.append("description", profileDesc);
     formData.append("bloodgroup", bloodGroup);
     formData.append("email", emailId);
-    formData.append("picturePath", profilePic.name);
-    const requestOptions = {
+    if(profilePic.name){
+      formData.append("picturePath", profilePic.name);
+    }
+    else{ 
+      formData.append("picturePath", profilePic);
+    }
+     const requestOptions = {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
