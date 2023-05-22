@@ -3,15 +3,16 @@ import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import EmailVerify from "scenes/EmailVerify";
 import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
+import PP from "scenes/profilePage/index.jsx";
 import IutProfilePage from "scenes/sadafSearchDirectory/components/Directory.js";
-import ProfilePage from "scenes/sadafProfile/Profile.js";
+import ProfilePage from "scenes/sadafprofile/Profile.js";
 import BlogDetails from "scenes/tamzidBlog/BlogDetails.jsx";
 import AllBlogs from "scenes/tamzidBlog/Blogs.jsx";
 import BlogPage from "scenes/tamzidBlog/MyBlog.jsx";
 import { themeSettings } from "./theme";
-import PP from "scenes/profilePage/index.jsx";
 
 function App() {
   const mode = useSelector((state) => state.mode);
@@ -45,18 +46,18 @@ function App() {
               path="/allblogs"
               element={isAuth ? <AllBlogs /> : <Navigate to="/" />}
             />
-            <Route exact path="/allblogs" component={AllBlogs} />
+            <Route path="/allblogs" component={AllBlogs} />
             <Route path="/blogs/:blogId" component={BlogDetails} />
             <Route
               path="/iutProfile"
               element={isAuth ? <IutProfilePage /> : <Navigate to="/" />}
             />
-            ////
             <Route
               path="/profilePage/:userId"
               // path="/profilePage"
               element={isAuth ? <PP /> : <Navigate to="/" />}
             />
+            <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

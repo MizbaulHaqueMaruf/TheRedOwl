@@ -1,16 +1,11 @@
-import { useEffect } from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Navbar from "scenes/navbar/blognavbar";
 import { setBlogs } from "state";
 import Blog from "./Blog";
-import { useState } from 'react';
-import Navbar from "scenes/navbar/blognavbar";
 import IUTImage from './img/iut.jpg';
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import { useNavigate } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   cardContainer: {
     display: 'flex',
